@@ -87,7 +87,6 @@ export class PaymentComponent {
   }
 
   async pay() {
-    liff.closeWindow();
     try {
       await liff.openWindow({
         url: 'https://900d-2001-fb1-29-1e53-dc47-eea2-5509-b6e8.ngrok-free.app',
