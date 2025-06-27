@@ -90,10 +90,10 @@ export class PaymentComponent {
   pay() {
     try {
       liff.openWindow({
-        url: 'https://900d-2001-fb1-29-1e53-dc47-eea2-5509-b6e8.ngrok-free.app?openExternalBrowser=1',
+        url: 'https://900d-2001-fb1-29-1e53-dc47-eea2-5509-b6e8.ngrok-free.app',
         external: false
       });
-      this.router.navigate(['/succes-close']);
+      // this.router.navigate(['/succes-close']);
     } catch (error) {
       console.error('Payment failed', error);
     }
