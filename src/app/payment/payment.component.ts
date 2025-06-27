@@ -89,7 +89,7 @@ export class PaymentComponent {
   pay() {
     try {
        liff.openWindow({
-        url: 'https://www.youtube.com/watch?v=4Lmcadu8ghM',
+        url: 'https://900d-2001-fb1-29-1e53-dc47-eea2-5509-b6e8.ngrok-free.app',
         external: true
       });
     } catch (error) {
