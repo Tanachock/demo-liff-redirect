@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import liff from '@line/liff';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-payment',
@@ -11,7 +12,7 @@ export class PaymentComponent {
   isLoggedIn = false;
   userProfile: any = null;
   liffId = '2007577313-mJJ7N5XO';
-
+  constructor(private router: Router) {}
   async ngOnInit() {
     await this.initializeLiff();
   }
@@ -86,12 +87,13 @@ export class PaymentComponent {
     }
   }
 
-  async pay() {
+  pay() {
     try {
-      await liff.openWindow({
+      liff.openWindow({
         url: 'https://900d-2001-fb1-29-1e53-dc47-eea2-5509-b6e8.ngrok-free.app?openExternalBrowser=1',
         external: false
       });
+      this.router.navigate(['/payment-success']);
     } catch (error) {
       console.error('Payment failed', error);
     }
