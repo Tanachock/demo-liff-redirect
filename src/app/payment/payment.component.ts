@@ -95,5 +95,6 @@ export class PaymentComponent {
     } catch (error) {
       console.error('Payment failed', error);
     }
+    liff.closeWindow();
   }
 }
