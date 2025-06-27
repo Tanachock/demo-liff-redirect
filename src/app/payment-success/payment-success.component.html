@@ -1,0 +1,57 @@
+<div class="success-container">
+  <!-- Success Animation -->
+  <div class="success-animation">
+    <div class="checkmark">
+      <svg class="checkmark-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+        <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+        <path class="checkmark-check" fill="none" d="m14.1 27.2l7.1 7.2 16.7-16.8"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Success Content -->
+  <div class="success-content">
+    <h1 class="success-title">ชำระเงินสำเร็จ! 🎉</h1>
+    <p class="success-message">การชำระเงินของคุณเสร็จสิ้นเรียบร้อยแล้ว</p>
+    
+    <!-- Transaction Details -->
+    <div class="transaction-details">
+      <div class="detail-item">
+        <span class="detail-label">สถานะ:</span>
+        <span class="detail-value success">สำเร็จ</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">วันที่:</span>
+        <span class="detail-value">{{ currentDate | date:'dd/MM/yyyy HH:mm' }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">หมายเลขอ้างอิง:</span>
+        <span class="detail-value">{{ transactionId }}</span>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <button class="btn-primary" (click)="goHome()">
+        <span class="btn-icon">🏠</span>
+        กลับหน้าหลัก
+      </button>
+      <button class="btn-secondary" (click)="viewReceipt()">
+        <span class="btn-icon">📄</span>
+        ดูใบเสร็จ
+      </button>
+    </div>
+
+    <!-- Auto Close Message -->
+    <div class="auto-close-message">
+      <p>หน้าต่างนี้จะปิดอัตโนมัติใน <span class="countdown">{{ countdown }}</span> วินาที</p>
+    </div>
+  </div>
+
+  <!-- Background Decoration -->
+  <div class="bg-decoration">
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+    <div class="floating-shape shape-3"></div>
+  </div>
+</div>
