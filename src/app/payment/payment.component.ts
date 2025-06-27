@@ -87,12 +87,14 @@ export class PaymentComponent {
   }
 
   async pay() {
-    liff.closeWindow();
     try {
-      await liff.openWindow({
-        url: 'https://900d-2001-fb1-29-1e53-dc47-eea2-5509-b6e8.ngrok-free.app?openExternalBrowser=1',
-        external: false
-      });
+      // ใช้ window.open() เพื่อเปิดใน Safari โดยตรง
+      window.open('https://900d-2001-fb1-29-1e53-dc47-eea2-5509-b6e8.ngrok-free.app?openExternalBrowser=1', '_blank');
+      
+      // ปิด LIFF หลังจากเปิด Safari
+      setTimeout(() => {
+        liff.closeWindow();
+      }, 500);
     } catch (error) {
       console.error('Payment failed', error);
     }
