@@ -86,18 +86,14 @@ export class PaymentComponent {
     }
   }
 
-  async pay() {
+  pay() {
     try {
-      this.isLoading = true;
-      const result = await liff.openWindow({
+       liff.openWindow({
         url: 'https://www.youtube.com/watch?v=4Lmcadu8ghM',
         external: true
       });
-      console.log('Payment result:', result);
     } catch (error) {
       console.error('Payment failed', error);
-    } finally {
-      this.isLoading = false;
     }
   }
 }
