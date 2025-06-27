@@ -91,7 +91,7 @@ export class PaymentComponent {
       this.isLoading = true;
       const result = await liff.openWindow({
         url: 'https://www.youtube.com/watch?v=4Lmcadu8ghM',
-        external: true,
+        external: true
       });
       console.log('Payment result:', result);
     } catch (error) {
