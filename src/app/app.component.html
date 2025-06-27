@@ -1,72 +1,43 @@
+<div class="container">
+  <!-- Header -->
+  <div class="header">
+    <h1>LINE LIFF Demo</h1>
+  </div>
 
-
-<div class="liff-container">
-  <header class="header">
-    <h1>{{ title }}</h1>
-    <div class="auth-section">
-      <div *ngIf="!isLoggedIn" class="login-section">
-        <p>กรุณาเข้าสู่ระบบด้วย LINE</p>
-        <button class="login-btn" (click)="login()">
-          <span class="line-icon">📱</span>
-          เข้าสู่ระบบด้วย LINE
-        </button>
-      </div>
-      
-      <div *ngIf="isLoggedIn" class="user-section">
-        <div class="user-info">
-          <img *ngIf="userProfile?.pictureUrl" [src]="userProfile.pictureUrl" alt="Profile" class="profile-pic">
-          <div class="user-details">
-            <h3>{{ userProfile?.displayName || 'ผู้ใช้' }}</h3>
-            <p>{{ userProfile?.statusMessage || 'ไม่มีข้อความสถานะ' }}</p>
-          </div>
-        </div>
-        <button class="logout-btn" (click)="logout()">
-          ออกจากระบบ
-        </button>
-      </div>
+  <!-- Login Section -->
+  <div class="login-section" *ngIf="!isLoggedIn">
+    <div class="login-card">
+      <h2>เข้าสู่ระบบ</h2>
+      <p>กรุณาเข้าสู่ระบบด้วย LINE เพื่อใช้งาน</p>
+      <button class="login-btn" (click)="login()">
+        เข้าสู่ระบบด้วย LINE
+      </button>
     </div>
-  </header>
+  </div>
 
-  <main class="main-content">
-    <div *ngIf="!isLoggedIn" class="welcome-section">
-      <h2>ยินดีต้อนรับสู่ LIFF App</h2>
-      <p>แอปพลิเคชันนี้ใช้ LINE Front-end Framework (LIFF) สำหรับการเข้าสู่ระบบ</p>
-      <div class="features">
-        <div class="feature-card">
-          <h3>🔐 การเข้าสู่ระบบที่ปลอดภัย</h3>
-          <p>ใช้ LINE Login เพื่อความปลอดภัยสูงสุด</p>
-        </div>
-        <div class="feature-card">
-          <h3>👤 ข้อมูลผู้ใช้</h3>
-          <p>เข้าถึงข้อมูลโปรไฟล์ LINE ของคุณ</p>
-        </div>
-        <div class="feature-card">
-          <h3>📱 รองรับหลายอุปกรณ์</h3>
-          <p>ใช้งานได้ทั้งบนมือถือและเดสก์ท็อป</p>
-        </div>
+  <!-- User Dashboard -->
+  <div class="dashboard" *ngIf="isLoggedIn && userProfile">
+    <!-- User Info -->
+    <div class="user-info">
+      <img [src]="userProfile.pictureUrl" [alt]="userProfile.displayName" class="profile-pic">
+      <div class="user-details">
+        <h2>ยินดีต้อนรับ {{ userProfile.displayName }}</h2>
+        <p>{{ userProfile.statusMessage || 'ไม่มีสถานะ' }}</p>
       </div>
+      <button class="logout-btn" (click)="logout()">ออกจากระบบ</button>
     </div>
 
-    <div *ngIf="isLoggedIn" class="dashboard">
-      <h2>แดชบอร์ด</h2>
-      <div class="user-dashboard">
-        <div class="dashboard-card">
-          <h3>ข้อมูลผู้ใช้</h3>
-          <div class="user-data">
-            <p><strong>ชื่อ:</strong> {{ userProfile?.displayName }}</p>
-            <p><strong>User ID:</strong> {{ userProfile?.userId }}</p>
-            <p><strong>สถานะ:</strong> {{ userProfile?.statusMessage || 'ไม่มีข้อความสถานะ' }}</p>
-          </div>
-        </div>
-        
-        <div class="dashboard-card">
-          <h3>การตั้งค่า LIFF</h3>
-          <div class="liff-info">
-            <p><strong>LIFF ID:</strong> {{ liffId }}</p>
-            <p><strong>สถานะ:</strong> <span class="status-success">เชื่อมต่อแล้ว</span></p>
-          </div>
-        </div>
-      </div>
+    <!-- Payment Section -->
+    <div class="payment-section">
+      <h3>การชำระเงิน</h3>
+      <p>กดปุ่มด้านล่างเพื่อชำระเงิน</p>
+      <button class="payment-btn" (click)="pay()">ชำระเงิน</button>
     </div>
-  </main>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading" *ngIf="isLoading">
+    <p>กำลังโหลด...</p>
+  </div>
 </div>
+

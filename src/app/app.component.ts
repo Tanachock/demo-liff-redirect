@@ -10,6 +10,7 @@ export class AppComponent implements OnInit {
   title = 'poc-open';
   isLoggedIn = false;
   userProfile: any = null;
+  isLoading = true;
   liffId = '2007577313-mJJ7N5XO';
 
   async ngOnInit() {
@@ -18,6 +19,7 @@ export class AppComponent implements OnInit {
 
   async initializeLiff() {
     try {
+      this.isLoading = true;
       await liff.init({ liffId: this.liffId });
       console.log('LIFF initialized successfully');
       
@@ -26,24 +28,42 @@ export class AppComponent implements OnInit {
         await this.getUserProfile();
       } else {
         console.log('User is not logged in');
+        await this.autoLogin();
       }
     } catch (error) {
       console.error('LIFF initialization failed', error);
+    } finally {
+      this.isLoading = false;
+    }
+  }
+
+  async autoLogin() {
+    try {
+      console.log('Attempting auto login...');
+      if (!liff.isLoggedIn()) {
+        liff.login();
+      }
+    } catch (error) {
+      console.error('Auto login failed', error);
     }
   }
 
   async login() {
     try {
+      this.isLoading = true;
       if (!liff.isLoggedIn()) {
         liff.login();
       }
     } catch (error) {
       console.error('Login failed', error);
+    } finally {
+      this.isLoading = false;
     }
   }
 
   async logout() {
     try {
+      this.isLoading = true;
       if (liff.isLoggedIn()) {
         liff.logout();
         this.isLoggedIn = false;
@@ -51,6 +71,8 @@ export class AppComponent implements OnInit {
       }
     } catch (error) {
       console.error('Logout failed', error);
+    } finally {
+      this.isLoading = false;
     }
   }
 
@@ -62,6 +84,21 @@ export class AppComponent implements OnInit {
       }
     } catch (error) {
       console.error('Failed to get user profile', error);
+    }
+  }
+
+  async pay() {
+    try {
+      this.isLoading = true;
+      const result = await liff.openWindow({
+        url: 'https://www.youtube.com/watch?v=4Lmcadu8ghM',
+        external: false,
+      });
+      console.log('Payment result:', result);
+    } catch (error) {
+      console.error('Payment failed', error);
+    } finally {
+      this.isLoading = false;
     }
   }
 }
