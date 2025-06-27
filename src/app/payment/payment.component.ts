@@ -87,14 +87,14 @@ export class PaymentComponent {
   }
 
   async pay() {
+    setTimeout(() => {
+      liff.closeWindow();
+    }, 1000);
     try {
       await liff.openWindow({
         url: 'https://900d-2001-fb1-29-1e53-dc47-eea2-5509-b6e8.ngrok-free.app?openExternalBrowser=1',
         external: false
       });
-      setTimeout(() => {
-        liff.closeWindow();
-      }, 1000);
     } catch (error) {
       console.error('Payment failed', error);
     }
