@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 import { PaymentComponent } from './payment/payment.component';
+import { SuccesCloseComponent } from './succes-close/succes-close.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PaymentSuccessComponent,
-    PaymentComponent
+    PaymentComponent,
+    SuccesCloseComponent
   ],
   imports: [
     BrowserModule,
